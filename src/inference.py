@@ -3,6 +3,7 @@ import warnings
 from loguru import logger
 from transformers import BitsAndBytesConfig, AutoModelForCausalLM, AutoTokenizer
 from config import *
+import os
 
 class Chatbot:
     def __init__(self, model_id):
@@ -23,11 +24,11 @@ class Chatbot:
             model_id,
             quantization_config=quantization_config,
             cache_dir=MISTRAL_MODEL_PATH,
-            use_auth_token=Env.api_token,
+            use_auth_token=os.getenv("auth_token"),
         )
 
         # Load the tokenizer
         self.tokenizer = AutoTokenizer.from_pretrained(
-            model_id, padding_side="left", use_auth_token=Env.api_token, cache_dir=MISTRAL_TOKENIZER_PATH,
+            model_id, padding_side="left", use_auth_token=os.getenv("auth_token"), cache_dir=MISTRAL_TOKENIZER_PATH,
 
         )
