@@ -1,7 +1,7 @@
-from src.file_handler import read_json_file,parse_pdf,list_files_in_directory
+from src.file_handler import read_json_file
 from src.vector_store import ChromaDBHandler
+from src.config import json_file
 
-json_file ='/home/fm-pc-lt-149/Documents/Capstone_project/data/faq.json'
 faqs = read_json_file(json_file)
 chroma_db_handler = ChromaDBHandler(collection_name="healthcare")
 for index, row in enumerate(faqs):

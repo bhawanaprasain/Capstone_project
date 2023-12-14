@@ -1,7 +1,7 @@
 from models.model import Query
 from fastapi import APIRouter
 from loguru import logger
-from src.db_pipeline import chroma_db_handler
+from src.db import chroma_db_handler
 from src.inference import Chatbot
 
 
@@ -9,7 +9,7 @@ router = APIRouter(
     tags=["Chatbot"],
 )
 
-chatbot =Chatbot()
+chatbot =Chatbot(model_id="Bhawana/medicare")
 
 @router.post("/chat/")
 async def chat(query: Query):
@@ -17,13 +17,15 @@ async def chat(query: Query):
         question, history,client_name = (
             query.question,
             query.history,
-            question.client_name
+            query.client_name
         )
-        context = chroma_db_handler.query_collection(query_texts=[query], n_results=1)
+
+        context = chroma_db_handler.query_collection(query_texts=[question], n_results=1)
         print(context)
 
         distance = context['distances'][0][0]
-        response = chatbot.get_response(query, history, distance, context)
+        
+        response = chatbot.get_response(question, history, distance, context)
         return [{"message": response}]
     except Exception as e:
         logger.error(e)

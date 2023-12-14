@@ -2,7 +2,7 @@ import torch
 import warnings
 from loguru import logger
 from transformers import BitsAndBytesConfig, AutoModelForCausalLM, AutoTokenizer
-from config import *
+from src.config import *
 import os
 
 class Chatbot:

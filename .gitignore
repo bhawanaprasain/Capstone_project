@@ -1,1 +1,4 @@
 .env
+api/models
+api/path-to-model
+api/path-to-tokenizer
