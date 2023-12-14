@@ -2,3 +2,5 @@
 api/models
 api/path-to-model
 api/path-to-tokenizer
+api/__pycache__
+__pycache__
