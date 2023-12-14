@@ -7,3 +7,5 @@ datasets==2.12.0
 loralib==0.1.1
 git+https://github.com/huggingface/peft.git
 bitsandbytes==0.41.1
+streamlit==1.29.0
+streamlit-chat==0.1.1
