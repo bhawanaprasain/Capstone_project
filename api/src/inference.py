@@ -48,18 +48,17 @@ class Chatbot:
                 )
                 model_inputs = encodeds.to(self.device)
                 generated_ids = self.model.generate(
-                    model_inputs, max_new_tokens=80, do_sample=True
+                    model_inputs, max_new_tokens=300, do_sample=True
                 )
                 decoded = self.tokenizer.batch_decode(generated_ids)
                 return decoded[0]
             else:
                 prompt = "As a healthcare AI assistant, prioritize empathetic responses to user questions. Do not provide personal information. When handling complaints or user queries with insufficient information, ask them relevant follow-up questions to understand their problem. Maintain user engagement by consistently asking meaningful follow-up questions when necessary. Now respond to the query from user. Query: "
                 initial_followup_prompt = "Ask a necessary follow-up question in case of complains and unclear explanation about the condition, to keep user engaged. If query from user has enough information, give necessary suggestion for the user's query."
-
                 if len(message_history) == 0:
                     message_history.append({"role": "user", "content": prompt +  initial_followup_prompt + query})
                 elif len(message_history) < 4:
-                    message_history.append({"role": "user", "content": initial_followup_prompt + query})
+                    message_history.append({"role": "user", "content":  query})
                 else:
                     message_history.append({"role": "user", "content":   query})
                 encodeds = self.tokenizer.apply_chat_template(
@@ -67,7 +66,7 @@ class Chatbot:
                 )
                 model_inputs = encodeds.to(self.device)
                 generated_ids = self.model.generate(
-                    model_inputs, max_new_tokens=70, do_sample=True
+                    model_inputs, max_new_tokens=150, do_sample=True
                 )
                 decoded = self.tokenizer.batch_decode(generated_ids)
                 return decoded[0]

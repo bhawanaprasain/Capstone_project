@@ -9,7 +9,7 @@ Welcome to our Capstone project! This project combines the power of ChromaDB and
 FastAPI: Utilizes FastAPI, a modern, fast web framework for building APIs with Python 3.7+.
 ChromaDB: Integrates ChromaDB for efficient storage and retrieval of chat conversations and PDF documents.
 LLM (Large Language Model): Leverages LLM(Mistral 7b) to enhance the chat experience with advanced natural language understanding.
-FAQ Integration: Allows users to get answers for questions that are specific to the servicer provider.
+FAQ Integration: Allows users to get answers for questions that are specific to the service provider.
 
 ## Installation
 
